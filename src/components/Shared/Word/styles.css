@@ -1,0 +1,42 @@
+.word {
+    position: relative;
+    width: max-content;
+    height: max-content;
+    user-select: none;
+}
+
+.word .word-letters {
+    margin: auto;
+    font-size: 24px;
+}
+
+.word .word-letters * {
+    width: 16.61px !important;
+}
+
+.word .word-letters span#empty {
+    color: #00A9F2 !important;
+}
+
+.word .word-letters span#true {
+    color: #9ccce8 !important;
+}
+
+.word .word-letters span#false {
+    color: #d96060 !important;
+}
+
+.word .word-input {
+    all: unset;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    color: transparent;
+    caret-color: #00A9F2;
+}
+
+.word .word-input::selection {
+    color: transparent;
+}
