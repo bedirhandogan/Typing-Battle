@@ -1,9 +1,12 @@
 import Typing from "../components/Layout/Typing";
+import WordProvider from "../context/WordProvider";
 
 function Home() {
     return (
         <>
-            <Typing />
+            <WordProvider>
+                <Typing />
+            </WordProvider>
         </>
     );
 }

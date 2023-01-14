@@ -8,6 +8,7 @@
 .word .word-letters {
     margin: auto;
     font-size: 24px;
+    z-index: 99;
 }
 
 .word .word-letters * {

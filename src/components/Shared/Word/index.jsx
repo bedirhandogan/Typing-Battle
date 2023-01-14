@@ -1,11 +1,14 @@
 import './styles.css';
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {Context} from "../../../context/WordProvider";
 
-function Word({value}) {
+function Word({value, isDisable}) {
     const [letters, setLetters] = useState([]);
 
+    const { words, setWords } = useContext(Context);
+
     useEffect(() => {
-        value.split('').forEach((v, i) => {
+        value?.split('').forEach((v, i) => {
             setLetters(prevState => [...prevState, { index: i, check: "empty", letter: v}]);
         });
 
@@ -40,10 +43,17 @@ function Word({value}) {
             }
         } else { // next input
             const form = event.target.form;
-            const index = [...form].indexOf(event.target);
+            const formIndex = [...form].indexOf(event.target);
 
-            event.target.disabled = true;
-            await form[index + 1].focus();
+            const wordList = JSON.parse(JSON.stringify(words));
+
+            if (formIndex < (event.target.form.length - 1)) {
+                wordList[formIndex].disable = true;
+                wordList[formIndex + 1].disable = false;
+
+                await setWords(wordList);
+                await form[formIndex + 1].focus();
+            }
         }
     }
 
@@ -53,7 +63,9 @@ function Word({value}) {
         }
     }
 
-    const onClickHandler = (event) => event.target.setSelectionRange(event.target.value.length, event.target.value.length);
+    const onClickHandler = (event) => {
+        event.target.setSelectionRange(event.target.value.length, event.target.value.length);
+    }
 
     return (
         <div className={"word"}>
@@ -63,6 +75,7 @@ function Word({value}) {
             <input onKeyDown={onKeyDownHandler}
                    onInput={onInputHandler}
                    onClick={onClickHandler}
+                   disabled={isDisable}
                    className={"word-input"}
                    type={"text"}
                    spellCheck={"false"}
