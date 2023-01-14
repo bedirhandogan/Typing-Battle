@@ -15,32 +15,35 @@ function Word({value}) {
     const onInputHandler = async (event) => {
         const index = letters.findIndex(v => v.index === (event.target.value.length - 1) && v.letter === event.nativeEvent.data);
         const length = event.target.value.length;
-        const inputted_letter = event.nativeEvent.data;
 
         if (letters.length >= length) {
-            if (event.nativeEvent.inputType !== "deleteContentBackward") { // backspace keypress
+            if (event.nativeEvent.inputType !== "deleteContentBackward") {
                 if (index !== -1) { // wrong keypress
                     await setLetters(letters.map(value => {
-                        if (value.index === (length - 1) && value.letter === inputted_letter) {
+                        if (value.index === (length - 1)) {
                             return {...value, check: "true"};
                         } else return value; }
                     ));
                 } else {
                     await setLetters(letters.map(value => {
-                        if (value.index !== (length - 1) && value.letter !== inputted_letter) {
+                        if (value.index !== (length - 1)) {
                             return value;
                         } else return {...value, check: "false"}; }
                     ));
                 }
-            } else {
+            } else { // backspace keypress
                 await setLetters(letters.map(value => {
                     if (value.index === length) {
                         return { ...value, check: "empty" };
                     } else return value;
                 }));
             }
-        } else {
-            // next input
+        } else { // next input
+            const form = event.target.form;
+            const index = [...form].indexOf(event.target);
+
+            event.target.disabled = true;
+            await form[index + 1].focus();
         }
     }
 
