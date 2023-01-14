@@ -12,7 +12,7 @@ function Word({value}) {
         return () => setLetters([]);
     }, [value]);
 
-    const wordInputHandler = async (event) => {
+    const onInputHandler = async (event) => {
         const index = letters.findIndex(v => v.index === (event.target.value.length - 1) && v.letter === event.nativeEvent.data);
         const length = event.target.value.length;
         const inputted_letter = event.nativeEvent.data;
@@ -50,12 +50,23 @@ function Word({value}) {
         }
     }
 
+    const onClickHandler = (event) => event.target.setSelectionRange(event.target.value.length, event.target.value.length);
+
     return (
         <div className={"word"}>
             <div className={"word-letters"}>
                 { letters.map((v, i) => <span key={i} id={v?.check}>{v?.letter}</span>) }
             </div>
-            <input onKeyDown={onKeyDownHandler} className={"word-input"} type={"text"} spellCheck={"false"} autoComplete="off" autoCapitalize="off" autoCorrect={"off"} onInput={wordInputHandler} />
+            <input onKeyDown={onKeyDownHandler}
+                   onInput={onInputHandler}
+                   onClick={onClickHandler}
+                   className={"word-input"}
+                   type={"text"}
+                   spellCheck={"false"}
+                   autoComplete="off"
+                   autoCapitalize="off"
+                   autoCorrect={"off"}
+            />
         </div>
     );
 }
