@@ -56,7 +56,7 @@ function Word({value, isDisable}) {
                     await form[formIndex + 1].focus();
                 }
             } else {
-                if (/[a-zA-Z0-9]/.test(event.target.value[letters.length])) {
+                if (/[a-zA-Z0-9wığüşöçĞÜŞÖÇİ]/.test(event.target.value[letters.length])) {
                     event.target.value = event.target.value.slice(0, letters.length);
                 }
             }
