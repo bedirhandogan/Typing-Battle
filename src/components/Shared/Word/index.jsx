@@ -47,12 +47,18 @@ function Word({value, isDisable}) {
 
             const wordList = JSON.parse(JSON.stringify(words));
 
-            if (formIndex < (event.target.form.length - 1)) {
-                wordList[formIndex].disable = true;
-                wordList[formIndex + 1].disable = false;
+            if (event.nativeEvent.data === " ") {
+                if (formIndex < (event.target.form.length - 1)) {
+                    wordList[formIndex].disable = true;
+                    wordList[formIndex + 1].disable = false;
 
-                await setWords(wordList);
-                await form[formIndex + 1].focus();
+                    await setWords(wordList);
+                    await form[formIndex + 1].focus();
+                }
+            } else {
+                if (/[a-zA-Z0-9]/.test(event.target.value[letters.length])) {
+                    event.target.value = event.target.value.slice(0, letters.length);
+                }
             }
         }
     }
@@ -76,6 +82,7 @@ function Word({value, isDisable}) {
                    onInput={onInputHandler}
                    onClick={onClickHandler}
                    disabled={isDisable}
+                   maxLength={letters.length + 1}
                    className={"word-input"}
                    type={"text"}
                    spellCheck={"false"}
