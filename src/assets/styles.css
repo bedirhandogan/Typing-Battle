@@ -2,8 +2,8 @@
 
 body, html {
     margin: 0;
-    background-color: #000909;
-    color: #00A9F2;
+    background-color: #090909;
+    color: #d3a913;
     font-family: 'Roboto Mono', monospace;
 }
 
@@ -15,4 +15,5 @@ body, html {
     width: 900px;
     height: 100vh;
     margin: auto;
+    gap: 80px;
 }

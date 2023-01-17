@@ -1,0 +1,36 @@
+.config {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: flex-end;
+}
+
+.config .config-items {
+    width: max-content;
+    display: flex;
+    gap: 10px;
+    background: rgba(91, 91, 91, 0.15);
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.config .config-item {
+    min-height: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.config .config-item .tooltip {
+    display: none;
+    color: #afafaf;
+}
+
+.config .config-item:hover > .tooltip {
+    display: block;
+    position: absolute;
+    top: -35px;
+}
