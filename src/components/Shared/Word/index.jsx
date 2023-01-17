@@ -12,6 +12,8 @@ function Word({value, isDisable}) {
             setLetters(prevState => [...prevState, { index: i, check: "empty", letter: v}]);
         });
 
+        document.body.querySelectorAll(".word > input")[0].focus();
+
         return () => setLetters([]);
     }, [value]);
 
