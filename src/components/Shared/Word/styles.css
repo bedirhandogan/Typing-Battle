@@ -16,11 +16,11 @@
 }
 
 .word .word-letters span#empty {
-    color: #00A9F2 !important;
+    color: #5b5b5b !important;
 }
 
 .word .word-letters span#true {
-    color: #9ccce8 !important;
+    color: #d3a913 !important;
 }
 
 .word .word-letters span#false {
@@ -35,7 +35,7 @@
     height: 100%;
     font-size: 24px;
     color: transparent;
-    caret-color: #00A9F2;
+    caret-color: #5b5b5b;
 }
 
 .word .word-input::selection {
