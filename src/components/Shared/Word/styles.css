@@ -9,6 +9,7 @@
     margin: auto;
     font-size: 24px;
     z-index: 99;
+    opacity: 0.5;
 }
 
 .word .word-letters * {
@@ -40,4 +41,9 @@
 
 .word .word-input::selection {
     color: transparent;
+}
+
+.word:focus-within > .word-letters {
+    opacity: 1;
+    border-bottom: 1px solid #d3a913;
 }
