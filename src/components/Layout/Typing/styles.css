@@ -5,4 +5,23 @@
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.typing .hover-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.typing:focus-within > .word {
+    filter: blur(0);
+}
+
+.typing:focus-within > .hover-text {
+    opacity: 0;
 }

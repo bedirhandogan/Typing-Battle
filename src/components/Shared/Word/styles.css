@@ -3,6 +3,7 @@
     width: max-content;
     height: max-content;
     user-select: none;
+    filter: blur(4px);
 }
 
 .word .word-letters {
