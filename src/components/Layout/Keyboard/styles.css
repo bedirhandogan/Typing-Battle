@@ -1,0 +1,33 @@
+.keyboard {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    user-select: none;
+}
+
+.keyboard .key {
+    min-width: 29.61px;
+    min-height: 40.8px;
+    color: gray;
+    background-color: rgba(91, 91, 91, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.keyboard .key.empty {
+    background: transparent;
+    min-width: calc(29.61px / 2);
+}
+
+.keyboard .key.space {
+    min-width: calc((29.61px * 2) + 5px);
+}
+
+.keyboard .key#true {
+    background-color: rgba(91, 91, 91, 0.03);
+}

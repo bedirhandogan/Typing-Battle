@@ -84,6 +84,7 @@ function Word({value, isDisable}) {
                    onInput={onInputHandler}
                    onClick={onClickHandler}
                    disabled={isDisable}
+                   aria-disabled={isDisable}
                    maxLength={letters.length + 1}
                    className={"word-input"}
                    type={"text"}
