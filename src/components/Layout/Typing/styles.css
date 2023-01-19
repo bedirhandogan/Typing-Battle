@@ -18,10 +18,10 @@
     position: absolute;
 }
 
-.typing:focus-within > .word {
+.typing.active > .word {
     filter: blur(0);
 }
 
-.typing:focus-within > .hover-text {
+.typing.active > .hover-text {
     opacity: 0;
 }

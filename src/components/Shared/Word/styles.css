@@ -44,6 +44,7 @@
     color: transparent;
 }
 
+
 .word:focus-within > .word-letters {
     opacity: 1;
     border-bottom: 1px solid #d3a913;
