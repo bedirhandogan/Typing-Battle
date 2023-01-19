@@ -2,7 +2,7 @@ import './styles.css';
 import Word from "../../Shared/Word";
 import {Context} from "../../../context/WordProvider";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
-import {CursorArrowIcon} from "@radix-ui/react-icons";
+import {ReloadIcon} from "@radix-ui/react-icons";
 import {wordList} from "../../utilities";
 
 function Typing() {
@@ -44,7 +44,10 @@ function Typing() {
 
     return (
         <form className={`typing ${formIncludePath ? 'active' : ''}`} ref={formRef}>
-            <div className={"hover-text"}><CursorArrowIcon /> Click to write and reload</div>
+            <div className={"hover-text"}>
+                <div>Click to reload and write</div>
+                <ReloadIcon />
+            </div>
             { words?.map((v, i) => <Word value={v?.word} key={i} isDisable={v?.disable} />) }
         </form>
     );
