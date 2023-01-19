@@ -25,11 +25,19 @@ function Typing() {
         }
     }, [setWords, formIncludePath]);
 
+    const handleFocus = useCallback(() => {
+        if (!document.hasFocus()) setFormIncludePath(false);
+    }, []);
+
     useEffect(() => {
         document.addEventListener("click", clickHandler);
+        document.addEventListener("focusout", handleFocus);
 
-        return () => document.removeEventListener("click", clickHandler);
-    }, [clickHandler])
+        return () => {
+            document.removeEventListener("click", clickHandler);
+            document.removeEventListener("focusout", handleFocus);
+        }
+    }, [clickHandler, handleFocus]);
 
     return (
         <form className={`typing ${formIncludePath ? 'active' : ''}`} ref={formRef}>
