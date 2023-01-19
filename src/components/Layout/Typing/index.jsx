@@ -15,7 +15,10 @@ function Typing() {
             setFormIncludePath(true);
             document.body.querySelector(".word > input[aria-disabled='false']").focus();
 
-            await [...formRef.current].forEach(v => v.value = "");
+            await [...formRef.current].forEach(v => {
+                if (!!v.value) v.value = ""; }
+            );
+
             if (!formIncludePath) await setWords(wordList());
         } else {
             setFormIncludePath(false);
