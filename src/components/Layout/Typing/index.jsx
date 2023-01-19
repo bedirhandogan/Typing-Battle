@@ -8,13 +8,12 @@ function Typing() {
     const { words } = useContext(Context);
 
     const clickHandler = async () => {
-        const inputs = document.body.querySelectorAll(".word > input");
-        await inputs.forEach(v => (v.disabled === false) && v.focus());
+        document.body.querySelector(".word > input[aria-disabled='false']").focus();
     }
 
     return (
         <form className={"typing"} onClick={clickHandler}>
-            <div className={"hover-text"}><CursorArrowIcon /> Click to write</div>
+            <div className={"hover-text"}><CursorArrowIcon /> Click to write </div>
             { words?.map((v, i) => <Word value={v?.word} key={i} isDisable={v?.disable} />) }
         </form>
     );
