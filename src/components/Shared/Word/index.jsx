@@ -17,7 +17,7 @@ function Word({value, isDisable}) {
         return () => setLetters([]);
     }, [value]);
 
-    const onInputHandler = async (event) => {
+    const handleInput = async (event) => {
         const index = letters.findIndex(v => v.index === (event.target.value.length - 1) && v.letter === event.nativeEvent.data);
         const length = event.target.value.length;
 
@@ -65,13 +65,13 @@ function Word({value, isDisable}) {
         }
     }
 
-    const onKeyDownHandler = (event) => {
+    const handleKeyDown = (event) => {
         if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
             event.preventDefault();
         }
     }
 
-    const onClickHandler = (event) => {
+    const handleClick = (event) => {
         event.target.setSelectionRange(event.target.value.length, event.target.value.length);
     }
 
@@ -80,9 +80,9 @@ function Word({value, isDisable}) {
             <div className={"word-letters"}>
                 { letters.map((v, i) => <span key={i} id={v?.check}>{v?.letter}</span>) }
             </div>
-            <input onKeyDown={onKeyDownHandler}
-                   onInput={onInputHandler}
-                   onClick={onClickHandler}
+            <input onKeyDown={handleKeyDown}
+                   onInput={handleInput}
+                   onClick={handleClick}
                    disabled={isDisable}
                    aria-disabled={isDisable}
                    maxLength={letters.length + 1}

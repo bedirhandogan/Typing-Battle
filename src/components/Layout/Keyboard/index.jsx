@@ -36,7 +36,7 @@ function Keyboard() {
         { key: "backspace", active: "false" },
     ]);
 
-    const keyPressHandler = useCallback(event => {
+    const handleKeyDown = useCallback(event => {
         setKeys(keys.map(v => {
             if (v.key === event.key.toLowerCase()) {
                 return {...v, active: "true"}
@@ -44,7 +44,7 @@ function Keyboard() {
         }));
     }, [keys]);
 
-    const keyUpHandler = useCallback(() => {
+    const handleKeyUp = useCallback(() => {
         setKeys(keys.map(v => {
             if (v.active === "true") {
                 return {...v, active: "false"}
@@ -53,14 +53,14 @@ function Keyboard() {
     }, [keys]);
 
     useEffect(() => {
-        document.addEventListener("keydown", keyPressHandler);
-        document.addEventListener("keyup", keyUpHandler);
+        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener("keyup", handleKeyUp);
 
         return () => {
-            document.removeEventListener("keydown", keyPressHandler);
-            document.removeEventListener("keyup", keyUpHandler);
+            document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("keyup", handleKeyUp);
         }
-    }, [keyPressHandler, keyUpHandler]);
+    }, [handleKeyDown, handleKeyUp]);
 
     return (
         <div className={"keyboard"}>

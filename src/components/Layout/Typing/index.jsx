@@ -11,7 +11,7 @@ function Typing() {
     const { words, setWords } = useContext(Context);
     const formRef = useRef();
 
-    const clickHandler = useCallback(async event => {
+    const handleClick = useCallback(async event => {
         if (event.composedPath().includes(formRef.current)) {
             setFormIncludePath(true);
             input.disabled = false;
@@ -33,14 +33,14 @@ function Typing() {
     }, [input]);
 
     useEffect(() => {
-        document.addEventListener("click", clickHandler);
+        document.addEventListener("click", handleClick);
         document.addEventListener("focusout", handleFocus);
 
         return () => {
-            document.removeEventListener("click", clickHandler);
+            document.removeEventListener("click", handleClick);
             document.removeEventListener("focusout", handleFocus);
         }
-    }, [clickHandler, handleFocus]);
+    }, [handleClick, handleFocus]);
 
     return (
         <form className={`typing ${formIncludePath ? 'active' : ''}`} ref={formRef}>
