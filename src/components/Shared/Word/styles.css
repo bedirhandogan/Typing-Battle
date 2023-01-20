@@ -18,15 +18,15 @@
 }
 
 .word .word-letters span#empty {
-    color: #5b5b5b !important;
+    color: var(--text-color-third) !important;
 }
 
 .word .word-letters span#true {
-    color: #d3a913 !important;
+    color: var(--text-color-primary) !important;
 }
 
 .word .word-letters span#false {
-    color: #d96060 !important;
+    color: var(--text-color-fourth) !important;
 }
 
 .word .word-input {
@@ -37,7 +37,7 @@
     height: 100%;
     font-size: 24px;
     color: transparent;
-    caret-color: #5b5b5b;
+    caret-color: var(--text-color-third);
 }
 
 .word .word-input::selection {
@@ -47,5 +47,5 @@
 
 .word:focus-within > .word-letters {
     opacity: 1;
-    border-bottom: 1px solid #d3a913;
+    border-bottom: 1px solid var(--text-color-primary);
 }

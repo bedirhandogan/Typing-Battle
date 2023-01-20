@@ -5,16 +5,9 @@
     align-items: center;
     box-sizing: border-box;
     justify-content: flex-end;
-}
-
-.config .config-items {
-    width: max-content;
-    display: flex;
-    gap: 10px;
-    background: rgba(91, 91, 91, 0.15);
-    padding: 5px 10px;
-    box-sizing: border-box;
     border-radius: 5px;
+    padding: 5px;
+    gap: 15px;
 }
 
 .config .config-item {
@@ -22,11 +15,38 @@
     position: relative;
     display: flex;
     justify-content: center;
+    background-color: rgba(255, 255, 255, 0.04);
+    align-items: center;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    gap: 10px;
+    cursor: pointer;
 }
+
+.config .config-item .time {
+    color: var(--text-color-secondary);
+}
+
+.config .config-item .color {
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+}
+
+.config .config-item .color.background-color-primary { background-color: var(--background-color-primary); }
+.config .config-item .color.background-color-secondary { background-color: var(--background-color-secondary); }
+.config .config-item .color.background-color-third { background-color: var(--background-color-third); }
+
+.config .config-item .color.text-color-primary { background-color: var(--text-color-primary); }
+.config .config-item .color.text-color-secondary { background-color: var(--text-color-secondary); }
+.config .config-item .color.text-color-third { background-color: var(--text-color-third); }
+.config .config-item .color.text-color-fourth { background-color: var(--text-color-fourth); }
 
 .config .config-item .tooltip {
     display: none;
-    color: #afafaf;
+    color: var(--text-color-secondary);
+    width: max-content;
 }
 
 .config .config-item:hover > .tooltip {

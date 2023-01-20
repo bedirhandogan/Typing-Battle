@@ -10,8 +10,8 @@
 .keyboard .key {
     min-width: 29.61px;
     min-height: 40.8px;
-    color: gray;
-    background-color: rgba(91, 91, 91, 0.12);
+    color: var(--text-color-secondary);
+    background-color: var(--background-color-secondary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,5 +30,5 @@
 }
 
 .keyboard .key#true {
-    background-color: rgba(91, 91, 91, 0.03);
+    background-color: var(--background-color-third);
 }

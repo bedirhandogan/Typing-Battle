@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+:root {
+    --background-color-primary: #090909;
+    --background-color-secondary: #8181810F;
+    --background-color-third: #4F4F4F26;
+
+    --text-color-primary: #d3a913;
+    --text-color-secondary: #afafaf;
+    --text-color-third: #5b5b5b;
+    --text-color-fourth: #d96060;
+}
+
 body, html {
     margin: 0;
-    background-color: #090909;
-    color: #d3a913;
+    background-color: var(--background-color-primary);
+    color: var(--text-color-primary);
     font-family: 'Roboto Mono', monospace;
 }
 
@@ -20,4 +31,8 @@ body, html {
 
 .App:focus-within > .keyboard {
     opacity: 1;
+}
+
+.App:focus-within > .config {
+    opacity: 0;
 }
