@@ -2,8 +2,8 @@ import './styles.css';
 import Word from "../../Shared/Word";
 import {Context} from "../../../context/WordProvider";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
-import {ReloadIcon} from "@radix-ui/react-icons";
 import {wordList} from "../../utilities";
+import {IconReload} from "@tabler/icons";
 
 function Typing() {
     const [formIncludePath, setFormIncludePath] = useState(true);
@@ -45,7 +45,7 @@ function Typing() {
         <form className={`typing ${formIncludePath ? 'active' : ''}`} ref={formRef}>
             <div className={"hover-text"}>
                 <div>Click to reload and write</div>
-                <ReloadIcon />
+                <IconReload stroke={2} style={{ color: "var(--text-color-primary)"}} />
             </div>
             { words?.map((v, i) => <Word value={v?.word} key={i} isDisable={v?.disable} />) }
         </form>

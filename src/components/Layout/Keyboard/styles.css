@@ -11,7 +11,7 @@
     min-width: 29.61px;
     min-height: 40.8px;
     color: var(--text-color-secondary);
-    background-color: var(--background-color-secondary);
+    background-color: #8181810F;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,9 +26,13 @@
 }
 
 .keyboard .key.space {
-    min-width: calc((29.61px * 2) + 5px);
+    min-width: calc((29.61px * 2) - 5px);
+}
+
+.keyboard .key.backspace {
+     min-width: calc(29.16px + 10px);
 }
 
 .keyboard .key#true {
-    background-color: var(--background-color-third);
+    background-color: rgba(56, 56, 56, 0.07);
 }

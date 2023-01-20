@@ -1,6 +1,6 @@
 import './styles.css';
-import {EraserIcon, MinusIcon} from "@radix-ui/react-icons";
 import {useCallback, useEffect, useState} from "react";
+import {IconBackspace, IconSpace} from "@tabler/icons";
 
 function Keyboard() {
     const [keys, setKeys] = useState([
@@ -66,11 +66,12 @@ function Keyboard() {
         <div className={"keyboard"}>
             { keys.map((v, i) => {
                 return <div className={`key ${v.key === "empty" ? "empty" :
-                    v.key === " " ? "space": ""}`} id={v.active} key={i}>
+                    v.key === " " ? "space": v.key === "backspace" ? "backspace" : ""}`} id={v.active} key={i}>
                     {
                         v.key === "empty" ? " " :
-                        v.key === " " ? <MinusIcon /> :
-                        v.key === "backspace" ? <EraserIcon width={16} /> : v.key.toUpperCase()
+                        v.key === " " ? <IconSpace stroke={1} /> :
+                        v.key === " " ? <IconSpace stroke={1} /> :
+                        v.key === "backspace" ? <IconBackspace stroke={1} width={23} /> : v.key.toUpperCase()
                     }
                 </div>
             }) }

@@ -3,7 +3,7 @@
 :root {
     --background-color-primary: #090909;
     --background-color-secondary: #8181810F;
-    --background-color-third: #4F4F4F26;
+    --background-color-third: rgba(58, 58, 58, 0.15);
 
     --text-color-primary: #d3a913;
     --text-color-secondary: #afafaf;

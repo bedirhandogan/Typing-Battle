@@ -1,12 +1,12 @@
 import './styles.css';
-import {BlendingModeIcon, KeyboardIcon, LapTimerIcon, StarIcon} from "@radix-ui/react-icons";
+import {IconAlarm, IconCrown, IconDeviceGamepad, IconPalette} from "@tabler/icons";
 
 function Config() {
     return (
         <div className={"config"}>
             <div className={"config-item"}>
                 <div className={"tooltip"}>Colors</div>
-                <BlendingModeIcon width={20} height={20} style={{ color: "var(--text-color-third)"}} />
+                <IconPalette stroke={2} style={{ color: "var(--text-color-third)"}} />
                 <div className={"color background-color-primary"} />
                 <div className={"color background-color-secondary"} />
                 <div className={"color background-color-third"} />
@@ -18,18 +18,18 @@ function Config() {
 
             <div className={"config-item"}>
                 <div className={"tooltip"}>Time</div>
-                <LapTimerIcon width={20} height={20} style={{ color: "var(--text-color-third)"}} />
+                <IconAlarm stroke={2} style={{ color: "var(--text-color-third)"}}/>
                 <div className={"time"}>30s</div>
             </div>
 
             <div className={"config-item"}>
                 <div className={"tooltip"}> Game Mode</div>
-                <KeyboardIcon width={20} height={20} style={{ color: "var(--text-color-third)"}} />
+                <IconDeviceGamepad stroke={2} style={{ color: "var(--text-color-third)"}} />
             </div>
 
             <div className={"config-item"}>
                 <div className={"tooltip"}> Leaderboard </div>
-                <StarIcon width={20} height={20} style={{ color: "var(--text-color-third)"}} />
+                <IconCrown stroke={2} style={{ color: "var(--text-color-third)"}}/>
             </div>
         </div>
     );
