@@ -1,11 +1,14 @@
 import './styles.css';
-import {useContext, useEffect, useState} from "react";
-import {Context} from "../../../context/WordProvider";
+import {useContext, useEffect, useRef, useState} from "react";
+import {Context as WordContext} from "../../../context/WordProvider";
+import {Context as ScoreContext} from "../../../context/ScoreProvider";
 
 function Word({value, isDisable}) {
     const [letters, setLetters] = useState([]);
+    const { words, setWords } = useContext(WordContext);
+    const wordLettersRef = useRef();
 
-    const { words, setWords } = useContext(Context);
+    const {setScore} = useContext(ScoreContext);
 
     useEffect(() => {
         value?.split('').forEach((v, i) => {
@@ -44,6 +47,8 @@ function Word({value, isDisable}) {
                 }));
             }
         } else { // next input
+            const letters = [...wordLettersRef.current.children];
+            const lettersIds = [];
             const form = event.target.form;
             const formIndex = [...form].indexOf(event.target);
 
@@ -56,6 +61,17 @@ function Word({value, isDisable}) {
 
                     await setWords(wordList);
                     await form[formIndex + 1].focus();
+
+                    letters.forEach(v => lettersIds.push(v.id));
+                    const lettersCheck = lettersIds.filter(v => v === "true");
+
+                    if (lettersCheck.length === (length - 1)) {
+                        setScore((prevState) => {
+                            return {...prevState, correctWord: prevState.correctWord + 1}
+                        });
+                    } else setScore((prevState) => {
+                            return {...prevState, wrongWord: prevState.wrongWord + 1}
+                        });
                 }
             } else {
                 if (/[a-zA-Z0-9wığüşöçĞÜŞÖÇİ]/.test(event.target.value[letters.length])) {
@@ -77,7 +93,7 @@ function Word({value, isDisable}) {
 
     return (
         <div className={"word"}>
-            <div className={"word-letters"}>
+            <div className={"word-letters"} ref={wordLettersRef}>
                 { letters.map((v, i) => <span key={i} id={v?.check}>{v?.letter}</span>) }
             </div>
             <input onKeyDown={handleKeyDown}
