@@ -6,7 +6,6 @@ import {ReloadIcon} from "@radix-ui/react-icons";
 import {wordList} from "../../utilities";
 
 function Typing() {
-    const input = document.body.querySelector(".word > input[aria-disabled='false']");
     const [formIncludePath, setFormIncludePath] = useState(true);
     const { words, setWords } = useContext(Context);
     const formRef = useRef();
@@ -14,8 +13,8 @@ function Typing() {
     const handleClick = useCallback(async event => {
         if (event.composedPath().includes(formRef.current)) {
             setFormIncludePath(true);
-            input.disabled = false;
-            input.focus();
+            formRef.current[0].disabled = false;
+            formRef.current[0].focus();
 
             await [...formRef.current].forEach(v => {
                 if (!!v.value) v.value = ""; }
@@ -25,12 +24,12 @@ function Typing() {
         } else {
             setFormIncludePath(false);
         }
-    }, [setWords, formIncludePath, input]);
+    }, [setWords, formIncludePath]);
 
     const handleFocus = useCallback(() => {
         if (!document.hasFocus()) setFormIncludePath(false);
-        input.disabled = true;
-    }, [input]);
+        formRef.current[0].disabled = true;
+    }, []);
 
     useEffect(() => {
         document.addEventListener("click", handleClick);
