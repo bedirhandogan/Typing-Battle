@@ -1,12 +1,12 @@
 import './styles.css';
-import {IconAlarm, IconCrown, IconDeviceGamepad, IconPalette} from "@tabler/icons";
+import {IconAlarm, IconCrown, IconDeviceGamepad, IconDroplet} from "@tabler/icons";
 
 function Config() {
     return (
         <div className={"config"}>
             <div className={"config-item"}>
                 <div className={"tooltip"}>Colors</div>
-                <IconPalette stroke={2} style={{ color: "var(--text-color-third)"}} />
+                <IconDroplet stroke={2} style={{ color: "var(--text-color-third)"}} />
                 <div className={"color background-color-primary"} />
                 <div className={"color background-color-secondary"} />
                 <div className={"color background-color-third"} />
