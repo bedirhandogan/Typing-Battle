@@ -65,10 +65,9 @@ function Keyboard() {
     return (
         <div className={"keyboard"}>
             { keys.map((v, i) => {
-                return <div className={`key ${v.key === "empty" ? "empty" : v.key}`} id={v.active} key={i}>
+                return <div className={`key ${v.key === "empty" ? "empty" : v.key === " " ? "space" : v.key}`} id={v.active} key={i}>
                     {
                         v.key === "empty" ? " " :
-                        v.key === " " ? <IconSpace stroke={1} /> :
                         v.key === " " ? <IconSpace stroke={1} /> :
                         v.key === "backspace" ? <IconBackspace stroke={1} width={23} /> : v.key.toUpperCase()
                     }
