@@ -1,35 +1,49 @@
 import './styles.css';
 import Word from "../../Shared/Word";
-import {Context} from "../../../context/WordProvider";
+import {Context as WordContext} from "../../../context/WordProvider";
+import {Context as TimeContext} from "../../../context/TimeProvider";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
-import {wordList} from "../../utilities";
-import {IconReload} from "@tabler/icons";
+import {IconClick} from "@tabler/icons";
 
 function Typing() {
-    const [formIncludePath, setFormIncludePath] = useState(true);
-    const { words, setWords } = useContext(Context);
+    const [inputFocus, setInputFocus] = useState(true);
+    const { words } = useContext(WordContext);
+    const { time, setTime } = useContext(TimeContext);
     const formRef = useRef();
 
     const handleClick = useCallback(async event => {
         if (event.composedPath().includes(formRef.current)) {
-            setFormIncludePath(true);
+            setInputFocus(true);
             formRef.current[0].disabled = false;
-            formRef.current[0].focus();
 
             await [...formRef.current].forEach(v => {
-                if (!!v.value) v.value = ""; }
-            );
+                if (v.ariaDisabled === "false") v.focus();
+            });
 
-            if (!formIncludePath) await setWords(wordList());
         } else {
-            setFormIncludePath(false);
+            setInputFocus(false);
         }
-    }, [setWords, formIncludePath]);
+    }, []);
 
     const handleFocus = useCallback(() => {
-        if (!document.hasFocus()) setFormIncludePath(false);
+        if (!document.hasFocus()) setInputFocus(false);
         formRef.current[0].disabled = true;
     }, []);
+
+    const handleInput = (event) => {
+        if (event.target.form[0].value.length <= 1) {
+            let duration = time;
+            let interval = setInterval(async () => {
+                duration = duration - 1;
+                setTime(duration);
+
+                if (duration === 0) {
+                    clearInterval(interval);
+                    setTime(0);
+                }
+            }, 1000);
+        }
+    }
 
     useEffect(() => {
         document.addEventListener("click", handleClick);
@@ -42,10 +56,10 @@ function Typing() {
     }, [handleClick, handleFocus]);
 
     return (
-        <form className={`typing ${formIncludePath ? 'active' : ''}`} ref={formRef}>
+        <form className={`typing ${inputFocus ? 'active' : ''}`} ref={formRef} onInput={handleInput}>
             <div className={"hover-text"}>
-                <div>Click to reload and write</div>
-                <IconReload stroke={2} style={{ color: "var(--text-color-primary)"}} />
+                <div>Click to write</div>
+                <IconClick stroke={2} style={{ color: "var(--text-color-primary)"}} />
             </div>
             { words?.map((v, i) => <Word value={v?.word} key={i} isDisable={v?.disable} />) }
         </form>

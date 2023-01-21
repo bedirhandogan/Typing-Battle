@@ -26,7 +26,7 @@ body, html {
     width: 900px;
     height: 100vh;
     margin: auto;
-    gap: 80px;
+    gap: 45px;
 }
 
 .App:focus-within > .keyboard {
