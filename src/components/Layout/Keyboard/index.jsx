@@ -65,8 +65,7 @@ function Keyboard() {
     return (
         <div className={"keyboard"}>
             { keys.map((v, i) => {
-                return <div className={`key ${v.key === "empty" ? "empty" :
-                    v.key === " " ? "space": v.key === "backspace" ? "backspace" : ""}`} id={v.active} key={i}>
+                return <div className={`key ${v.key === "empty" ? "empty" : v.key}`} id={v.active} key={i}>
                     {
                         v.key === "empty" ? " " :
                         v.key === " " ? <IconSpace stroke={1} /> :
