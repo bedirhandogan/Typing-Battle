@@ -4,9 +4,7 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    justify-content: flex-start;
     border-radius: 5px;
-    padding: 5px;
     gap: 15px;
 }
 
@@ -25,7 +23,13 @@
 }
 
 .config .config-item .time {
+    all: unset;
     color: var(--text-color-secondary);
+    transition: 200ms all;
+}
+
+.config .config-item .time:hover {
+    color: var(--text-color-third);
 }
 
 .config .config-item .color {

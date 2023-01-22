@@ -19,7 +19,6 @@ function Typing() {
             await [...formRef.current].forEach(v => {
                 if (v.ariaDisabled === "false") v.focus();
             });
-
         } else {
             setInputFocus(false);
         }
@@ -32,14 +31,15 @@ function Typing() {
 
     const handleInput = (event) => {
         if (event.target.form[0].value.length <= 1) {
-            let duration = time;
+            let duration = time.duration;
+
             let interval = setInterval(async () => {
-                duration = duration - 1;
-                setTime(duration);
+                duration--;
+                setTime({started: true, duration: duration});
 
                 if (duration === 0) {
                     clearInterval(interval);
-                    setTime(0);
+                    setTime({started: false, duration: 0});
                 }
             }, 1000);
         }

@@ -1,7 +1,20 @@
 import './styles.css';
 import {IconAlarm, IconCrown, IconDeviceGamepad, IconDroplet} from "@tabler/icons";
+import {useContext} from "react";
+import {Context as TimeContext} from "../../../context/TimeProvider";
 
 function Config() {
+    const {time, setTime} = useContext(TimeContext);
+
+    const handleClick = async (duration) => {
+        if (time.started === false) {
+            setTime(prevState => {
+                return {...prevState, duration: duration};
+            });
+            await localStorage.setItem("time", time.duration);
+        }
+    }
+
     return (
         <div className={"config"}>
             <div className={"config-item"}>
@@ -19,7 +32,9 @@ function Config() {
             <div className={"config-item"}>
                 <div className={"tooltip"}>Time</div>
                 <IconAlarm stroke={2} style={{ color: "var(--text-color-third)"}}/>
-                <div className={"time"}>30s</div>
+                <div className={"time"} onClick={() => handleClick(30)}>30s</div>
+                <div className={"time"} onClick={() => handleClick(60)}>1m</div>
+                <div className={"time"} onClick={() => handleClick(120)}>2m</div>
             </div>
 
             <div className={"config-item"}>
