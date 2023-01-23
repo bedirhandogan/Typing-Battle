@@ -11,7 +11,7 @@ function Config() {
             setTime(prevState => {
                 return {...prevState, duration: duration};
             });
-            await localStorage.setItem("time", time.duration);
+            await localStorage.setItem("time", duration);
         }
     }
 

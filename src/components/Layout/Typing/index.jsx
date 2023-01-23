@@ -42,7 +42,7 @@ function Typing() {
 
                 if (duration === 0) {
                     clearInterval(interval);
-                    setTime({started: false, duration: 0});
+                    setTime({started: false, duration: localStorage.getItem("time")});
                     setShowModal(true);
                     await [...formRef.current].forEach(v => {
                         if (!!v.value) v.value = "";
