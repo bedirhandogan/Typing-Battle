@@ -4,11 +4,14 @@ import {Context as WordContext} from "../../../context/WordProvider";
 import {Context as TimeContext} from "../../../context/TimeProvider";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {IconClick} from "@tabler/icons";
+import {Context as ShowModalContext} from "../../../context/ShowModalProvider";
+import {wordList} from "../../utilities";
 
 function Typing() {
     const [inputFocus, setInputFocus] = useState(true);
-    const { words } = useContext(WordContext);
+    const { words, setWords } = useContext(WordContext);
     const { time, setTime } = useContext(TimeContext);
+    const { setShowModal } = useContext(ShowModalContext);
     const formRef = useRef();
 
     const handleClick = useCallback(async event => {
@@ -40,6 +43,11 @@ function Typing() {
                 if (duration === 0) {
                     clearInterval(interval);
                     setTime({started: false, duration: 0});
+                    setShowModal(true);
+                    await [...formRef.current].forEach(v => {
+                        if (!!v.value) v.value = "";
+                    });
+                    await setWords(wordList());
                 }
             }, 1000);
         }

@@ -5,16 +5,21 @@ import Keyboard from "../components/Layout/Keyboard";
 import ScoreProvider from "../context/ScoreProvider";
 import TimeProvider from "../context/TimeProvider";
 import Duration from "../components/Layout/Duration";
+import Modal from "../components/Shared/Modal";
+import ShowModalProvider from "../context/ShowModalProvider";
 
 function Home() {
     return (
         <WordProvider>
             <ScoreProvider>
                 <TimeProvider>
-                    <Config />
-                    <Duration />
-                    <Typing />
-                    <Keyboard />
+                    <ShowModalProvider>
+                        <Modal title={"Statistics"} />
+                        <Config />
+                        <Duration />
+                        <Typing />
+                        <Keyboard />
+                    </ShowModalProvider>
                 </TimeProvider>
             </ScoreProvider>
         </WordProvider>
