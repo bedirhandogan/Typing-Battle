@@ -74,7 +74,7 @@ function Word({value, isDisable}) {
                         });
                 }
             } else {
-                if (/^[a-zA-Z0-9wığüşöçĞÜŞÖÇİ*?=.,$%&#^£@€ßæ|<>!:`';~/½_{(-]*$/.test(event.target.value[letters.length])) {
+                if (event.target.value[letters.length] !== " ") {
                     event.target.value = event.target.value.slice(0, letters.length);
                 }
             }
