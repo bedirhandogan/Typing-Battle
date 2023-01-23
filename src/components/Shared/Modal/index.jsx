@@ -5,7 +5,7 @@ import {Context as ShowModalContext} from "../../../context/ShowModalProvider";
 
 function Modal({title, children}) {
     const {showModal, setShowModal} = useContext(ShowModalContext);
-    console.log(showModal);
+
     return (
         <div className={"modal"} style={showModal ? {display: "flex"} : {display: "none"}}>
             <div className={"modal-header"}>

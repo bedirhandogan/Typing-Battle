@@ -8,7 +8,11 @@ function TimeProvider({children}) {
         started: false
     });
 
-    return <Context.Provider value={{time, setTime}}>{children}</Context.Provider>;
+    return (
+        <Context.Provider value={{time, setTime}}>
+            {children}
+        </Context.Provider>
+    );
 }
 
 export default TimeProvider;

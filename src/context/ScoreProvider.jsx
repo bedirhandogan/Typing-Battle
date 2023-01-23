@@ -9,7 +9,9 @@ function ScoreProvider({children}) {
     })
 
     return (
-         <Context.Provider value={{score, setScore}}>{children}</Context.Provider>
+         <Context.Provider value={{score, setScore}}>
+             {children}
+         </Context.Provider>
     );
 }
 
