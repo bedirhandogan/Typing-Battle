@@ -4,13 +4,18 @@ export const Context = createContext();
 
 function reducer(state, action) {
     return {
-        "showScoreArea": { showScoreArea: action.value },
+        "showScoreArea": {...state, showScoreArea: action.value },
+        "time": {...state, time: action.value},
     }[action.type]
 }
 
 function StateProvider({children}) {
     const [state, dispatch] = useReducer(reducer, {
         showScoreArea: false,
+        time: {
+            duration: !localStorage.getItem("time") ? localStorage.setItem("time", "30") : localStorage.getItem("time"),
+            started: false
+        },
     });
 
     return <Context.Provider value={{state, dispatch}}>{children}</Context.Provider>;

@@ -1,17 +1,15 @@
 import './styles.css';
 import {IconAlarm, IconCrown, IconDeviceGamepad, IconDroplet} from "@tabler/icons";
 import {useContext} from "react";
-import {Context as TimeContext} from "../../../context/TimeProvider";
+import {Context} from "../../../context/StateProvider";
 
 function Config() {
-    const {time, setTime} = useContext(TimeContext);
+    const {state, dispatch} = useContext(Context);
 
-    const handleClick = async (duration) => {
-        if (time.started === false) {
-            setTime(prevState => {
-                return {...prevState, duration: duration};
-            });
-            await localStorage.setItem("time", duration);
+    const handleClick = async (durations) => {
+        if (state.time.started === false) {
+            dispatch({ type: "time", value: {started: false, duration: durations}})
+            await localStorage.setItem("time", durations);
         }
     }
 

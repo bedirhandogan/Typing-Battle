@@ -1,7 +1,6 @@
 import './styles.css';
 import Word from "../../Shared/Word";
 import {Context as WordContext} from "../../../context/WordProvider";
-import {Context as TimeContext} from "../../../context/TimeProvider";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {IconClick} from "@tabler/icons";
 import {wordList} from "../../utilities";
@@ -10,8 +9,7 @@ import {Context} from "../../../context/StateProvider";
 function Typing() {
     const [inputFocus, setInputFocus] = useState(true);
     const { words, setWords } = useContext(WordContext);
-    const { time, setTime } = useContext(TimeContext);
-    const { dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
     const formRef = useRef();
 
     const handleClick = useCallback(async event => {
@@ -34,16 +32,18 @@ function Typing() {
 
     const handleInput = (event) => {
         if (event.target.form[0].value.length <= 1) {
-            let duration = time.duration;
+            let duration = state.time.duration;
 
             let interval = setInterval(async () => {
                 duration--;
-                setTime({started: true, duration: duration});
+                dispatch({ type: "time", value: { duration: duration, started: true }});
 
                 if (duration === 0) {
-                    clearInterval(interval);
-                    setTime({started: false, duration: localStorage.getItem("time")});
+                    clearInterval(interval)
+
+                    dispatch({ type: "time", value: { duration: localStorage.getItem("time"), started: false }});
                     dispatch({ type: 'showScoreArea', value: true });
+
                     await [...formRef.current].forEach(v => {
                         if (!!v.value) v.value = "";
                     });

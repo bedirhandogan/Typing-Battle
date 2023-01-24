@@ -1,11 +1,11 @@
 import './styles.css';
 import {useContext} from "react";
-import {Context as TimeContext} from "../../../context/TimeProvider";
+import {Context} from "../../../context/StateProvider";
 
 function Duration() {
-    const { time } = useContext(TimeContext);
+    const { state } = useContext(Context);
 
-    return <div className={"duration"}>{time.duration}</div>;
+    return <div className={"duration"}>{state.time.duration}</div>;
 }
 
 export default Duration;
