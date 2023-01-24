@@ -1,0 +1,28 @@
+.score {
+    position: absolute;
+    width: 900px;
+    min-height: 500px;
+    justify-content: center;
+    z-index: 1;
+    background-color: var(--background-color-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.score .score-reload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.score .score-close-btn {
+    width: 24px;
+    height: 24px;
+    transition: 200ms all;
+}
+
+.score .score-close-btn:hover {
+    opacity: 0.7;
+}

@@ -5,32 +5,24 @@ import Keyboard from "../components/Layout/Keyboard";
 import ScoreProvider from "../context/ScoreProvider";
 import TimeProvider from "../context/TimeProvider";
 import Duration from "../components/Layout/Duration";
-import Modal from "../components/Shared/Modal";
-import ShowModalProvider from "../context/ShowModalProvider";
-import Indicator from "../components/Shared/Indicator";
+import Score from "../components/Score";
+import StateProvider from "../context/StateProvider";
 
 function Home() {
     return (
-        <WordProvider>
-            <ScoreProvider>
-                <TimeProvider>
-                    <ShowModalProvider>
-                        <Modal title={"Score"}>
-                            <div className={"indicators"}>
-                                <Indicator name={"wpm"} />
-                                <Indicator name={"wcpm"} />
-                                <Indicator name={"accuracy"} />
-                                <Indicator name={"wrong"} />
-                            </div>
-                        </Modal>
+        <StateProvider>
+            <WordProvider>
+                <ScoreProvider>
+                    <TimeProvider>
+                        <Score />
                         <Config />
                         <Duration />
                         <Typing />
                         <Keyboard />
-                    </ShowModalProvider>
-                </TimeProvider>
-            </ScoreProvider>
-        </WordProvider>
+                    </TimeProvider>
+                </ScoreProvider>
+            </WordProvider>
+        </StateProvider>
     );
 }
 

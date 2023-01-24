@@ -4,14 +4,14 @@ import {Context as WordContext} from "../../../context/WordProvider";
 import {Context as TimeContext} from "../../../context/TimeProvider";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {IconClick} from "@tabler/icons";
-import {Context as ShowModalContext} from "../../../context/ShowModalProvider";
 import {wordList} from "../../utilities";
+import {Context} from "../../../context/StateProvider";
 
 function Typing() {
     const [inputFocus, setInputFocus] = useState(true);
     const { words, setWords } = useContext(WordContext);
     const { time, setTime } = useContext(TimeContext);
-    const { setShowModal } = useContext(ShowModalContext);
+    const { dispatch } = useContext(Context);
     const formRef = useRef();
 
     const handleClick = useCallback(async event => {
@@ -43,7 +43,7 @@ function Typing() {
                 if (duration === 0) {
                     clearInterval(interval);
                     setTime({started: false, duration: localStorage.getItem("time")});
-                    setShowModal(true);
+                    dispatch({ type: 'showScoreArea', value: true });
                     await [...formRef.current].forEach(v => {
                         if (!!v.value) v.value = "";
                     });

@@ -11,6 +11,11 @@ function Indicator({name}) {
         ((score.correctWord + score.wrongWord) - score.wrongWord) / (duration === "30" ? 0.5 : duration)
     ]
 
+    const [accuracy, wrong] = [
+        ((wcpm / wpm) * 100),
+        100 - ((wcpm / wpm) * 100)
+    ]
+
     return (
         <div className={"indicator"}>
             <div className={"indicator-name"}>{name}</div>
@@ -18,8 +23,8 @@ function Indicator({name}) {
                 {
                     name === "wpm" ? wpm :
                     name === "wcpm" ? wcpm :
-                    name === "accuracy" ? `%${Math.floor(((wcpm / wpm) * 100))}` :
-                    name === "wrong" ? `%${Math.floor(100 - ((wcpm / wpm) * 100))}` : ""
+                    name === "accuracy" ? `%${accuracy.toString().slice(0, 5)}` :
+                    name === "wrong" ? `%${wrong.toString().slice(0, 5)}` : ""
                 }
             </div>
         </div>
