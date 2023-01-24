@@ -1,14 +1,14 @@
 import './styles.css';
 import {useContext, useEffect, useRef, useState} from "react";
 import {Context as WordContext} from "../../../context/WordProvider";
-import {Context as ScoreContext} from "../../../context/ScoreProvider";
+import {Context} from "../../../context/StateProvider";
 
 function Word({value, isDisable}) {
     const [letters, setLetters] = useState([]);
     const { words, setWords } = useContext(WordContext);
     const wordLettersRef = useRef();
 
-    const {setScore} = useContext(ScoreContext);
+    const {state, dispatch} = useContext(Context);
 
     useEffect(() => {
         value?.split('').forEach((v, i) => {
@@ -66,12 +66,8 @@ function Word({value, isDisable}) {
                     const lettersCheck = lettersIds.filter(v => v === "true");
 
                     if (lettersCheck.length === (length - 1)) {
-                        setScore((prevState) => {
-                            return {...prevState, correctWord: prevState.correctWord + 1}
-                        });
-                    } else setScore((prevState) => {
-                            return {...prevState, wrongWord: prevState.wrongWord + 1}
-                        });
+                        dispatch({ type: 'score', value: {...state.score, correctWord: state.score.correctWord + 1}})
+                    } else dispatch({ type: 'score', value: {...state.score, wrongWord: state.score.wrongWord + 1}})
                 }
             } else {
                 if (event.target.value[letters.length] !== " ") {

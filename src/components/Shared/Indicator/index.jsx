@@ -1,14 +1,14 @@
 import './styles.css';
 import {useContext} from "react";
-import {Context as ScoreContext} from "../../../context/ScoreProvider";
+import {Context} from "../../../context/StateProvider";
 
 function Indicator({name}) {
-    const {score} = useContext(ScoreContext);
+    const {state} = useContext(Context);
     const duration = localStorage.getItem("time");
 
     const [wpm, wcpm] = [
-        (score.correctWord + score.wrongWord) / (duration === "30" ? 0.5 : duration),
-        ((score.correctWord + score.wrongWord) - score.wrongWord) / (duration === "30" ? 0.5 : duration)
+        (state.score.correctWord + state.score.wrongWord) / (duration === "30" ? 0.5 : duration),
+        ((state.score.correctWord + state.score.wrongWord) - state.score.wrongWord) / (duration === "30" ? 0.5 : duration)
     ]
 
     const [accuracy, wrong] = [

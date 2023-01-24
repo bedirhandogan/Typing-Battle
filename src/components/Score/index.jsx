@@ -1,17 +1,15 @@
 import './styles.css';
 import {IconReload} from "@tabler/icons";
 import {useContext} from "react";
-import {Context as ScoreContext} from "../../context/ScoreProvider";
 import Indicator from "../Shared/Indicator";
 import {Context} from "../../context/StateProvider";
 
 function Score() {
     const {state, dispatch} = useContext(Context);
-    const {setScore} = useContext(ScoreContext);
 
     const handleClick = () => {
         dispatch({ type: 'showScoreArea', value: false });
-        setScore({ correctWord: 0, wrongWord: 0 });
+        dispatch({ type: 'score', value: { correctWord: 0, wrongWord: 0 }})
     }
 
     return (

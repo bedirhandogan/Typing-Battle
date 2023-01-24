@@ -6,6 +6,7 @@ function reducer(state, action) {
     return {
         "showScoreArea": {...state, showScoreArea: action.value },
         "time": {...state, time: action.value},
+        "score": {...state, score: action.value},
     }[action.type]
 }
 
@@ -16,6 +17,10 @@ function StateProvider({children}) {
             duration: !localStorage.getItem("time") ? localStorage.setItem("time", "30") : localStorage.getItem("time"),
             started: false
         },
+        score: {
+            correctWord: 0,
+            wrongWord: 0,
+        }
     });
 
     return <Context.Provider value={{state, dispatch}}>{children}</Context.Provider>;
