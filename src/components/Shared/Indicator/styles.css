@@ -1,0 +1,15 @@
+.indicators {
+    display: flex;
+    justify-content: space-between;
+}
+
+.indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.indicator .indicator-name {
+    text-transform: uppercase;
+    font-size: 25px;
+}
