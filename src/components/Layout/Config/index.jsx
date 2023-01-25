@@ -1,11 +1,13 @@
 import './styles.css';
 import {IconAlarm, IconCrown, IconDeviceGamepad, IconTextColor} from "@tabler/icons";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import {Context} from "context/StateProvider";
 
 function Config() {
     const {state, dispatch} = useContext(Context);
     const [showColorArea, setShowColorArea] = useState(false);
+    const colorSelectRef = useRef();
+
     const [colors, setColors] = useState(!localStorage.getItem("colors") ? localStorage.setItem("colors", JSON.stringify({
         textColorPrimary: "#d3a913",
         textColorSecondary: "#afafaf",
@@ -13,15 +15,7 @@ function Config() {
         textColorFourth: "#d96060"
     })) : JSON.parse(localStorage.getItem("colors")));
 
-    useEffect(() => {
-        const colors = JSON.parse(localStorage.getItem("colors"));
-        document.documentElement.style.setProperty('--color-5', colors.textColorPrimary);
-        document.documentElement.style.setProperty('--color-6', colors.textColorSecondary);
-        document.documentElement.style.setProperty('--color-7', colors.textColorThird);
-        document.documentElement.style.setProperty('--color-8', colors.textColorFourth);
-    }, []);
-
-    const handleClick = async (durations) => {
+    const handleTimeClick = async (durations) => {
         if (state.time.started === false) {
             dispatch({ type: "time", value: {started: false, duration: durations}})
             await localStorage.setItem("time", durations);
@@ -75,9 +69,26 @@ function Config() {
         }[key.toString()]();
     }
 
+    const handleClick = (event) => {
+        if (!event.composedPath().includes(colorSelectRef.current)) {
+            setShowColorArea(false);
+        }
+    };
+
+    useEffect(() => {
+        const colors = JSON.parse(localStorage.getItem("colors"));
+        document.documentElement.style.setProperty('--color-5', colors.textColorPrimary);
+        document.documentElement.style.setProperty('--color-6', colors.textColorSecondary);
+        document.documentElement.style.setProperty('--color-7', colors.textColorThird);
+        document.documentElement.style.setProperty('--color-8', colors.textColorFourth);
+
+        document.addEventListener("click", handleClick);
+        return () => document.removeEventListener("click", handleClick);
+    }, []);
+
     return (
         <div className={"config"}>
-            <div className={"config-item"}>
+            <div className={"config-item"} ref={colorSelectRef}>
                 <div className={"tooltip"}>Text Colors</div>
                 <IconTextColor stroke={2} style={{ color: "var(--color-7)"}} />
                 <div className={"colors"} onClick={() => setShowColorArea(prevState => !prevState)}>
@@ -130,9 +141,9 @@ function Config() {
             <div className={"config-item"}>
                 <div className={"tooltip"}>Time</div>
                 <IconAlarm stroke={2} style={{ color: "var(--color-7)"}} />
-                <div className={"time"} onClick={() => handleClick(30)}>30s</div>
-                <div className={"time"} onClick={() => handleClick(60)}>1m</div>
-                <div className={"time"} onClick={() => handleClick(120)}>2m</div>
+                <div className={"time"} onClick={() => handleTimeClick(30)}>30s</div>
+                <div className={"time"} onClick={() => handleTimeClick(60)}>1m</div>
+                <div className={"time"} onClick={() => handleTimeClick(120)}>2m</div>
             </div>
 
             <div className={"config-item"}>
