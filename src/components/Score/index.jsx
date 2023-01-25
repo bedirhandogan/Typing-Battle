@@ -24,7 +24,7 @@ function Score() {
             <div className={"score-reload"}>
                 Click to reload and write
                 <div className={"score-close-btn"} onClick={handleClick}>
-                    <IconReload style={{ color: "var(--text-color-primary)"}}/>
+                    <IconReload style={{ color: "var(--color-5)"}}/>
                 </div>
             </div>
         </div>

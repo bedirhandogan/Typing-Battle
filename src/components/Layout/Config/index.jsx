@@ -17,10 +17,7 @@ function Config() {
         <div className={"config"}>
             <div className={"config-item"}>
                 <div className={"tooltip"}>Colors</div>
-                <IconDroplet stroke={2} style={{ color: "var(--text-color-third)"}} />
-                <div className={"color background-color-primary"} />
-                <div className={"color background-color-secondary"} />
-                <div className={"color background-color-third"} />
+                <IconDroplet stroke={2} style={{ color: "var(--color-7)"}} />
                 <div className={"color text-color-primary"} />
                 <div className={"color text-color-secondary"} />
                 <div className={"color text-color-third"} />
@@ -29,7 +26,7 @@ function Config() {
 
             <div className={"config-item"}>
                 <div className={"tooltip"}>Time</div>
-                <IconAlarm stroke={2} style={{ color: "var(--text-color-third)"}}/>
+                <IconAlarm stroke={2} style={{ color: "var(--color-7)"}} />
                 <div className={"time"} onClick={() => handleClick(30)}>30s</div>
                 <div className={"time"} onClick={() => handleClick(60)}>1m</div>
                 <div className={"time"} onClick={() => handleClick(120)}>2m</div>
@@ -37,12 +34,12 @@ function Config() {
 
             <div className={"config-item"}>
                 <div className={"tooltip"}> Game Mode</div>
-                <IconDeviceGamepad stroke={2} style={{ color: "var(--text-color-third)"}} />
+                <IconDeviceGamepad stroke={2} style={{ color: "var(--color-7)"}} />
             </div>
 
             <div className={"config-item"}>
                 <div className={"tooltip"}> Leaderboard </div>
-                <IconCrown stroke={2} style={{ color: "var(--text-color-third)"}}/>
+                <IconCrown stroke={2} style={{ color: "var(--color-7)"}} />
             </div>
         </div>
     );

@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 :root {
-    --background-color-primary: #090909;
-    --background-color-secondary: #8181810F;
-    --background-color-third: rgba(58, 58, 58, 0.15);
+    --color-1: #090909;
+    --color-2: #8181810F;
+    --color-3: rgba(58, 58, 58, 0.15);
 
-    --text-color-primary: #d3a913;
-    --text-color-secondary: #afafaf;
-    --text-color-third: #5b5b5b;
-    --text-color-fourth: #d96060;
+    --color-5: #d3a913;
+    --color-6: #afafaf;
+    --color-7: #5b5b5b;
+    --color-8: #d96060;
 }
 
 body, html {
     margin: 0;
-    background-color: var(--background-color-primary);
-    color: var(--text-color-primary);
+    background-color: var(--color-1);
+    color: var(--color-5);
     font-family: 'Roboto Mono', monospace;
 }
 

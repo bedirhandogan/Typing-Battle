@@ -10,7 +10,7 @@
 .keyboard .key {
     min-width: 29.61px;
     min-height: 40.8px;
-    color: var(--text-color-secondary);
+    color: var(--color-6);
     background-color: #8181810F;
     display: flex;
     justify-content: center;

@@ -13,7 +13,7 @@
     position: relative;
     display: flex;
     justify-content: center;
-    background-color: var(--background-color-secondary);
+    background-color: var(--color-2);
     align-items: center;
     padding: 5px 10px;
     box-sizing: border-box;
@@ -24,12 +24,12 @@
 
 .config .config-item .time {
     all: unset;
-    color: var(--text-color-secondary);
+    color: var(--color-6);
     transition: 200ms all;
 }
 
 .config .config-item .time:hover {
-    color: var(--text-color-third);
+    color: var(--color-7);
 }
 
 .config .config-item .color {
@@ -38,18 +38,14 @@
     border-radius: 100%;
 }
 
-.config .config-item .color.background-color-primary { background-color: var(--background-color-primary); }
-.config .config-item .color.background-color-secondary { background-color: var(--background-color-secondary); }
-.config .config-item .color.background-color-third { background-color: var(--background-color-third); }
-
-.config .config-item .color.text-color-primary { background-color: var(--text-color-primary); }
-.config .config-item .color.text-color-secondary { background-color: var(--text-color-secondary); }
-.config .config-item .color.text-color-third { background-color: var(--text-color-third); }
-.config .config-item .color.text-color-fourth { background-color: var(--text-color-fourth); }
+.config .config-item .color.text-color-primary { background-color: var(--color-5); }
+.config .config-item .color.text-color-secondary { background-color: var(--color-6); }
+.config .config-item .color.text-color-third { background-color: var(--color-7); }
+.config .config-item .color.text-color-fourth { background-color: var(--color-8); }
 
 .config .config-item .tooltip {
     display: none;
-    color: var(--text-color-secondary);
+    color: var(--color-6);
     width: max-content;
 }
 

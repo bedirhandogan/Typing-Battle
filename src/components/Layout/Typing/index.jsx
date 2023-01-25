@@ -65,7 +65,7 @@ function Typing() {
         <form className={`typing ${inputFocus ? 'active' : ''}`} ref={formRef} onInput={handleInput}>
             <div className={"hover-text"}>
                 <div>Click to write</div>
-                <IconClick stroke={2} style={{ color: "var(--text-color-primary)"}} />
+                <IconClick stroke={2} style={{ color: "var(--color-5)"}} />
             </div>
             { state.words.map((v, i) => <Word value={v?.word} key={i} isDisable={v?.disable} />) }
         </form>

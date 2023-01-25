@@ -18,15 +18,15 @@
 }
 
 .word .word-letters span#empty {
-    color: var(--text-color-third) !important;
+    color: var(--color-7) !important;
 }
 
 .word .word-letters span#true {
-    color: var(--text-color-primary) !important;
+    color: var(--color-5) !important;
 }
 
 .word .word-letters span#false {
-    color: var(--text-color-fourth) !important;
+    color: var(--color-8) !important;
 }
 
 .word .word-input {
@@ -37,7 +37,7 @@
     height: 100%;
     font-size: 24px;
     color: transparent;
-    caret-color: var(--text-color-third);
+    caret-color: var(--color-7);
 }
 
 .word .word-input::selection {
@@ -47,5 +47,5 @@
 
 .word:focus-within > .word-letters {
     opacity: 1;
-    border-bottom: 1px solid var(--text-color-primary);
+    border-bottom: 1px solid var(--color-5);
 }
