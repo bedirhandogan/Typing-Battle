@@ -1,4 +1,4 @@
-import {createContext, useReducer} from "react";
+import {createContext, useEffect, useReducer} from "react";
 import {wordList} from "json";
 
 export const Context = createContext();
@@ -25,6 +25,10 @@ function StateProvider({children}) {
         },
         words: [...wordList()],
     });
+
+    useEffect(() => {
+        dispatch({ type: "time", value: { started: false, duration: localStorage.getItem("time") }});
+    }, [])
 
     return <Context.Provider value={{state, dispatch}}>{children}</Context.Provider>;
 }
