@@ -1,9 +1,9 @@
-import Typing from "../components/Layout/Typing";
-import Config from "../components/Layout/Config";
-import Keyboard from "../components/Layout/Keyboard";
-import Duration from "../components/Layout/Duration";
-import Score from "../components/Score";
-import StateProvider from "../context/StateProvider";
+import Typing from "components/Layout/Typing";
+import Config from "components/Layout/Config";
+import Keyboard from "components/Layout/Keyboard";
+import Duration from "components/Layout/Duration";
+import Score from "components/Score";
+import StateProvider from "context/StateProvider";
 
 function Home() {
     return (

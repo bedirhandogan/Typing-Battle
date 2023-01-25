@@ -1,6 +1,6 @@
 import './styles.css';
 import {useContext, useEffect, useRef, useState} from "react";
-import {Context} from "../../../context/StateProvider";
+import {Context} from "context/StateProvider";
 
 function Word({value, isDisable}) {
     const [letters, setLetters] = useState([]);

@@ -1,6 +1,6 @@
 import './styles.css';
 import {useContext} from "react";
-import {Context} from "../../../context/StateProvider";
+import {Context} from "context/StateProvider";
 
 function Indicator({name}) {
     const {state} = useContext(Context);

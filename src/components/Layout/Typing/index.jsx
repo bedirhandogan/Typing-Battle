@@ -1,9 +1,9 @@
 import './styles.css';
-import Word from "../../Shared/Word";
+import Word from "components/Shared/Word";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {IconClick} from "@tabler/icons";
-import {wordList} from "../../../json";
-import {Context} from "../../../context/StateProvider";
+import {wordList} from "json";
+import {Context} from "context/StateProvider";
 
 function Typing() {
     const [inputFocus, setInputFocus] = useState(true);

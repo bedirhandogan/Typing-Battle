@@ -1,7 +1,7 @@
 import './styles.css';
 import {IconAlarm, IconCrown, IconDeviceGamepad, IconDroplet} from "@tabler/icons";
 import {useContext} from "react";
-import {Context} from "../../../context/StateProvider";
+import {Context} from "context/StateProvider";
 
 function Config() {
     const {state, dispatch} = useContext(Context);

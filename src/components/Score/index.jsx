@@ -1,8 +1,8 @@
 import './styles.css';
 import {IconReload} from "@tabler/icons";
 import {useContext} from "react";
-import Indicator from "../Shared/Indicator";
-import {Context} from "../../context/StateProvider";
+import Indicator from "components/Shared/Indicator";
+import {Context} from "context/StateProvider";
 
 function Score() {
     const {state, dispatch} = useContext(Context);
