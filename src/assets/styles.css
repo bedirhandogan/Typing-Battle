@@ -28,11 +28,3 @@ body, html {
     margin: auto;
     gap: 45px;
 }
-
-/*.App:focus-within > .keyboard {*/
-/*    opacity: 1;*/
-/*}*/
-
-/*.App:focus-within > .config {*/
-/*    opacity: 0;*/
-/*}*/
