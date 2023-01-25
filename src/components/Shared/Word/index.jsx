@@ -1,11 +1,9 @@
 import './styles.css';
 import {useContext, useEffect, useRef, useState} from "react";
-import {Context as WordContext} from "../../../context/WordProvider";
 import {Context} from "../../../context/StateProvider";
 
 function Word({value, isDisable}) {
     const [letters, setLetters] = useState([]);
-    const { words, setWords } = useContext(WordContext);
     const wordLettersRef = useRef();
 
     const {state, dispatch} = useContext(Context);
@@ -52,19 +50,18 @@ function Word({value, isDisable}) {
             const form = event.target.form;
             const formIndex = [...form].indexOf(event.target);
 
-            const wordList = JSON.parse(JSON.stringify(words));
+            const wordList = JSON.parse(JSON.stringify(state.words));
 
             if (event.nativeEvent.data === " ") {
                 if (formIndex < (event.target.form.length - 1)) {
                     wordList[formIndex].disable = true;
                     wordList[formIndex + 1].disable = false;
 
-                    await setWords(wordList);
-                    await form[formIndex + 1].focus();
-
                     letters.forEach(v => lettersIds.push(v.id));
                     const lettersCheck = lettersIds.filter(v => v === "true");
 
+                    await dispatch({ type: "words", value: wordList });
+                    await form[formIndex + 1].focus();
                     if (lettersCheck.length === (length - 1)) {
                         dispatch({ type: 'score', value: {...state.score, correctWord: state.score.correctWord + 1}})
                     } else dispatch({ type: 'score', value: {...state.score, wrongWord: state.score.wrongWord + 1}})

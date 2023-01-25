@@ -1,6 +1,5 @@
 import './styles.css';
 import Word from "../../Shared/Word";
-import {Context as WordContext} from "../../../context/WordProvider";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {IconClick} from "@tabler/icons";
 import {wordList} from "../../utilities";
@@ -8,7 +7,6 @@ import {Context} from "../../../context/StateProvider";
 
 function Typing() {
     const [inputFocus, setInputFocus] = useState(true);
-    const { words, setWords } = useContext(WordContext);
     const { state, dispatch } = useContext(Context);
     const formRef = useRef();
 
@@ -43,11 +41,11 @@ function Typing() {
 
                     dispatch({ type: "time", value: { duration: localStorage.getItem("time"), started: false }});
                     dispatch({ type: 'showScoreArea', value: true });
+                    dispatch({ type: "words", value: wordList() });
 
                     await [...formRef.current].forEach(v => {
                         if (!!v.value) v.value = "";
                     });
-                    await setWords(wordList());
                 }
             }, 1000);
         }
@@ -69,7 +67,7 @@ function Typing() {
                 <div>Click to write</div>
                 <IconClick stroke={2} style={{ color: "var(--text-color-primary)"}} />
             </div>
-            { words?.map((v, i) => <Word value={v?.word} key={i} isDisable={v?.disable} />) }
+            { state.words.map((v, i) => <Word value={v?.word} key={i} isDisable={v?.disable} />) }
         </form>
     );
 }
