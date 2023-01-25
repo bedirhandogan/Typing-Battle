@@ -1,4 +1,4 @@
-import Words from "../../json/EnglishWordList.json";
+import Words from "./EnglishWordList.json";
 
 const wordList = () => {
     const json_word_list = JSON.parse(JSON.stringify(Words.data)).sort(() => Math.random() - 0.5).slice(0, 250);

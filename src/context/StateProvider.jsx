@@ -1,5 +1,5 @@
 import {createContext, useReducer} from "react";
-import {wordList} from "../components/utilities";
+import {wordList} from "../json";
 
 export const Context = createContext();
 

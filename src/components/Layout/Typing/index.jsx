@@ -2,7 +2,7 @@ import './styles.css';
 import Word from "../../Shared/Word";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {IconClick} from "@tabler/icons";
-import {wordList} from "../../utilities";
+import {wordList} from "../../../json";
 import {Context} from "../../../context/StateProvider";
 
 function Typing() {
