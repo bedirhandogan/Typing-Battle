@@ -7,8 +7,8 @@ function Indicator({name}) {
     const duration = localStorage.getItem("time");
 
     const [wpm, wcpm] = [
-        (state.score.correctWord + state.score.wrongWord) / (duration === "30" ? 0.5 : duration),
-        ((state.score.correctWord + state.score.wrongWord) - state.score.wrongWord) / (duration === "30" ? 0.5 : duration)
+        (state.score.correctWord + state.score.wrongWord) / (duration === "30" ? 0.5 : duration === "60" ? 1 : duration === "120" ? 2 : duration),
+        ((state.score.correctWord + state.score.wrongWord) - state.score.wrongWord) / (duration === "30" ? 0.5 : duration === "60" ? 1 : duration === "120" ? 2 : duration)
     ]
 
     const [accuracy, wrong] = [
