@@ -9,6 +9,7 @@ function reducer(state, action) {
         "time": {...state, time: action.value},
         "score": {...state, score: action.value},
         "words": {...state, words: action.value},
+        "inputFocus": {...state, inputFocus: action.value},
     }[action.type]
 }
 
@@ -24,6 +25,7 @@ function StateProvider({children}) {
             wrongWord: 0,
         },
         words: [...wordList()],
+        inputFocus: true,
     });
 
     useEffect(() => {

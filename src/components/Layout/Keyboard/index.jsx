@@ -1,8 +1,11 @@
 import './styles.css';
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import {IconBackspace, IconSpace} from "@tabler/icons";
+import {Context} from "context/StateProvider";
 
 function Keyboard() {
+    const {state} = useContext(Context);
+
     const [keys, setKeys] = useState([
         { key: "q", active: "false" },
         { key: "w", active: "false" },
@@ -63,7 +66,7 @@ function Keyboard() {
     }, [handleKeyDown, handleKeyUp]);
 
     return (
-        <div className={"keyboard"}>
+        <div className={"keyboard"} style={{ opacity: state.inputFocus ? "1" : "0"}}>
             { keys.map((v, i) => {
                 return <div className={`key ${v.key === "empty" ? "empty" : v.key === " " ? "space" : v.key}`} id={v.active} key={i}>
                     {

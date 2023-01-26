@@ -87,7 +87,7 @@ function Config() {
     }, []);
 
     return (
-        <div className={"config"}>
+        <div className={"config"} style={{ opacity: state.inputFocus ? "0": "1" }}>
             <div className={"config-item"} ref={colorSelectRef}>
                 <div className={"tooltip"}>Text Colors</div>
                 <IconTextColor stroke={2} style={{ color: "var(--color-7)"}} />

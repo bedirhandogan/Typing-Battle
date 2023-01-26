@@ -1,32 +1,31 @@
 import './styles.css';
 import Word from "components/Shared/Word";
-import {useCallback, useContext, useEffect, useRef, useState} from "react";
+import {useCallback, useContext, useEffect, useRef} from "react";
 import {IconClick} from "@tabler/icons";
 import {wordList} from "json";
 import {Context} from "context/StateProvider";
 
 function Typing() {
-    const [inputFocus, setInputFocus] = useState(true);
     const { state, dispatch } = useContext(Context);
     const formRef = useRef();
 
     const handleClick = useCallback(async event => {
         if (event.composedPath().includes(formRef.current)) {
-            setInputFocus(true);
+            dispatch({ type: "inputFocus", value: true });
             formRef.current[0].disabled = false;
 
             await [...formRef.current].forEach(v => {
                 if (v.ariaDisabled === "false") v.focus();
             });
         } else {
-            setInputFocus(false);
+            dispatch({ type: "inputFocus", value: false });
         }
-    }, []);
+    }, [dispatch]);
 
     const handleFocus = useCallback(() => {
-        if (!document.hasFocus()) setInputFocus(false);
+        if (!document.hasFocus()) dispatch({ type: "inputFocus", value: false });
         formRef.current[0].disabled = true;
-    }, []);
+    }, [dispatch]);
 
     const handleInput = (event) => {
         let duration = state.time.duration;
@@ -62,7 +61,7 @@ function Typing() {
     }, [handleClick, handleFocus]);
 
     return (
-        <form className={`typing ${inputFocus ? 'active' : ''}`} ref={formRef} onInput={handleInput}>
+        <form className={`typing ${state.inputFocus ? 'active' : ''}`} ref={formRef} onInput={handleInput}>
             <div className={"hover-text"}>
                 <div>Click to write</div>
                 <IconClick stroke={2} style={{ color: "var(--color-5)"}} />
