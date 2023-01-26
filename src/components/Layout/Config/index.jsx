@@ -15,10 +15,10 @@ function Config() {
         textColorFourth: "#d96060"
     })) : JSON.parse(localStorage.getItem("colors")));
 
-    const handleTimeClick = async (duration) => {
+    const handleTimeClick = (duration) => {
         if (state.time.started === false) {
             dispatch({ type: "time", value: {started: false, duration: duration}})
-            await localStorage.setItem("time", duration);
+            localStorage.setItem("time", duration);
         }
     }
 
