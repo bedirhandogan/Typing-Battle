@@ -25,7 +25,7 @@ function Config() {
     const handleInput = (event, key) => {
         const newColors = JSON.parse(localStorage.getItem("colors"));
 
-        return {
+        const functions = {
             "1": async () => {
                 newColors.textColorPrimary = event.target.value;
                 document.documentElement.style.setProperty('--color-5', event.target.value);
@@ -66,7 +66,10 @@ function Config() {
 
                 await localStorage.setItem("colors", JSON.stringify(newColors));
             },
-        }[key.toString()]();
+        }
+
+
+        functions[key.toString()]();
     }
 
     const handleClick = (event) => {
@@ -91,7 +94,7 @@ function Config() {
             <div className={"config-item"} ref={colorSelectRef}>
                 <div className={"tooltip"}>Text Colors</div>
                 <IconTextColor stroke={2} style={{ color: "var(--color-7)"}} />
-                <div className={"colors"} onClick={() => setShowColorArea(prevState => !prevState)}>
+                <div className={"colors"} onClick={() => state.time.started === false && setShowColorArea(prevState => !prevState)}>
                     <div className={"color text-color-primary"} style={{ background: colors.textColorPrimary }} />
                     <div className={"color text-color-secondary"} style={{ background: colors.textColorSecondary }} />
                     <div className={"color text-color-third"} style={{ background: colors.textColorThird }} />
