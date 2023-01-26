@@ -20,30 +20,18 @@ function Word({value, isDisable}) {
 
     const handleInput = async (event) => {
         const index = letters.findIndex(v => v.index === (event.target.value.length - 1) && v.letter === event.nativeEvent.data);
-        const length = event.target.value.length;
+        const targetLength = event.target.value.length;
 
-        if (letters.length >= length) {
-            if (event.nativeEvent.inputType !== "deleteContentBackward") {
-                if (index !== -1) { // wrong keypress
-                    await setLetters(letters.map(value => {
-                        if (value.index === (length - 1)) {
-                            return {...value, check: "true"};
-                        } else return value; }
-                    ));
-                } else {
-                    await setLetters(letters.map(value => {
-                        if (value.index !== (length - 1)) {
-                            return value;
-                        } else return {...value, check: "false"}; }
-                    ));
+        if (letters.length >= targetLength) {
+            setLetters(letters.map(value => {
+                if (event.nativeEvent.inputType !== "deleteContentBackward" && value.index === (targetLength - 1)) {
+                    return {...value, check: (index !== -1 ? "true" : "false")};
+                } else if (value.index === targetLength) {
+                    return { ...value, check: "empty" };
                 }
-            } else { // backspace keypress
-                await setLetters(letters.map(value => {
-                    if (value.index === length) {
-                        return { ...value, check: "empty" };
-                    } else return value;
-                }));
-            }
+
+                return value;
+            }));
         } else { // next input
             const letters = [...wordLettersRef.current.children];
             const lettersIds = [];
@@ -52,25 +40,22 @@ function Word({value, isDisable}) {
 
             const wordList = JSON.parse(JSON.stringify(state.words));
 
-            if (event.nativeEvent.data === " ") {
-                if (formIndex < (event.target.form.length - 1)) {
-                    wordList[formIndex].disable = true;
-                    wordList[formIndex + 1].disable = false;
+            if (event.nativeEvent.data === " " && formIndex < (event.target.form.length - 1)) {
+                wordList[formIndex].disable = true;
+                wordList[formIndex + 1].disable = false;
 
-                    letters.forEach(v => lettersIds.push(v.id));
-                    const lettersCheck = lettersIds.filter(v => v === "true");
+                letters.forEach(v => lettersIds.push(v.id));
+                const lettersCheck = lettersIds.filter(v => v === "true");
 
-                    await dispatch({ type: "words", value: wordList });
-                    await form[formIndex + 1].focus();
-                    if (lettersCheck.length === (length - 1)) {
-                        dispatch({ type: 'score', value: {...state.score, correctWord: state.score.correctWord + 1}})
-                    } else dispatch({ type: 'score', value: {...state.score, wrongWord: state.score.wrongWord + 1}})
-                }
-            } else {
-                if (event.target.value[letters.length] !== " ") {
-                    event.target.value = event.target.value.slice(0, letters.length);
-                }
+                await dispatch({ type: "words", value: wordList });
+                form[formIndex + 1].focus();
+
+                dispatch(lettersCheck.length === (targetLength - 1) ?
+                    { type: 'score', value: {...state.score, correctWord: state.score.correctWord + 1}} :
+                    { type: 'score', value: {...state.score, wrongWord: state.score.wrongWord + 1}});
             }
+
+            event.target.value = event.target.value.slice(0, letters.length);
         }
     }
 
