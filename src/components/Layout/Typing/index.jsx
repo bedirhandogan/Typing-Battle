@@ -29,15 +29,15 @@ function Typing() {
     }, []);
 
     const handleInput = (event) => {
-        if (event.target.form[0].value.length <= 1) {
-            let duration = state.time.duration;
+        let duration = state.time.duration;
 
+        if (event.target.form[0].value.length) {
             let interval = setInterval(async () => {
                 duration--;
                 dispatch({ type: "time", value: { duration: duration, started: true }});
 
                 if (duration === 0) {
-                    clearInterval(interval)
+                    clearInterval(interval);
 
                     dispatch({ type: "time", value: { duration: localStorage.getItem("time"), started: false }});
                     dispatch({ type: 'showScoreArea', value: true });
