@@ -6,6 +6,24 @@ import {Context} from "context/StateProvider";
 
 function Score() {
     const {state, dispatch} = useContext(Context);
+    const duration = localStorage.getItem("time");
+
+    const [wpm, wcpm] = [
+        (state.score.correctWord + state.score.wrongWord) / (duration === "30" ? 0.5 : duration === "60" ? 1 : duration === "120" ? 2 : duration),
+        ((state.score.correctWord + state.score.wrongWord) - state.score.wrongWord) / (duration === "30" ? 0.5 : duration === "60" ? 1 : duration === "120" ? 2 : duration)
+    ]
+
+    const [accuracy, wrong] = [
+        ((wcpm / wpm) * 100),
+        100 - ((wcpm / wpm) * 100)
+    ]
+
+    const indicators = [
+        { name: "wpm", result: wpm },
+        { name: "wcpm", result: wcpm },
+        { name: "accuracy", result: accuracy },
+        { name: "wrong", result: wrong },
+    ];
 
     const handleClick = () => {
         dispatch({ type: 'showScoreArea', value: false });
@@ -15,10 +33,7 @@ function Score() {
     return (
         <div className={"score"} style={state.showScoreArea ? {display: "flex"} : {display: "none"}}>
             <div className={"indicators"}>
-                <Indicator name={"wpm"} />
-                <Indicator name={"wcpm"} />
-                <Indicator name={"accuracy"} />
-                <Indicator name={"wrong"} />
+                { indicators.map((v, i) => <Indicator name={v.name} value={v.result} key={i} />)}
             </div>
 
             <div className={"score-reload"}>
