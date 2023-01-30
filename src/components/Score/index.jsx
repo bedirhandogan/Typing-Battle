@@ -21,8 +21,8 @@ function Score() {
     const indicators = [
         { name: "wpm", result: wpm },
         { name: "wcpm", result: wcpm },
-        { name: "accuracy", result: accuracy },
-        { name: "wrong", result: wrong },
+        { name: "accuracy", result: accuracy || 0 },
+        { name: "wrong", result: wrong || 0 },
     ];
 
     const handleClick = () => {

@@ -4,7 +4,7 @@ function Indicator({name, value}) {
     return (
         <div className={"indicator"}>
             <div className={"indicator-name"}>{name}</div>
-            <div>{value.toString().slice(0, 5)}</div>
+            <div>{name === "accuracy" || name === "wrong" ? `${Math.floor(value)}%` : Math.floor(value) }</div>
         </div>
     );
 }
