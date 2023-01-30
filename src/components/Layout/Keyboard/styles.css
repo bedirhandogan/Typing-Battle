@@ -6,33 +6,3 @@
     user-select: none;
     opacity: 0;
 }
-
-.keyboard .key {
-    min-width: 29.61px;
-    min-height: 40.8px;
-    color: var(--color-6);
-    background-color: #8181810F;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    box-sizing: border-box;
-    border-radius: 5px;
-}
-
-.keyboard .key.empty {
-    background: transparent;
-    min-width: calc(29.61px / 2);
-}
-
-.keyboard .key.space {
-    min-width: calc((29.61px * 2) - 5px);
-}
-
-.keyboard .key.backspace {
-     min-width: calc(29.16px + 10px);
-}
-
-.keyboard .key#true {
-    background-color: rgba(56, 56, 56, 0.09);
-}
