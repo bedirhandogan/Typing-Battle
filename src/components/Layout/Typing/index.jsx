@@ -17,9 +17,11 @@ function Typing() {
             await [...formRef.current].forEach(v => {
                 if (v.ariaDisabled === "false") v.focus();
             });
-        } else {
-            dispatch({ type: "inputFocus", value: false });
+
+            return;
         }
+
+        dispatch({ type: "inputFocus", value: false });
     }, [dispatch]);
 
     const handleFocus = useCallback(() => {
