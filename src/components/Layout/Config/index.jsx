@@ -1,5 +1,5 @@
 import './styles.css';
-import {IconAlarm, IconCrown, IconDeviceGamepad, IconTextColor, IconUser} from "@tabler/icons";
+import {IconAlarm, IconTextColor} from "@tabler/icons";
 import {useContext, useEffect, useRef, useState} from "react";
 import {Context} from "context/StateProvider";
 
@@ -147,21 +147,6 @@ function Config() {
                 <div className={"time"} onClick={() => handleTimeClick(30)}>30s</div>
                 <div className={"time"} onClick={() => handleTimeClick(60)}>1m</div>
                 <div className={"time"} onClick={() => handleTimeClick(120)}>2m</div>
-            </div>
-
-            <div className={"config-item"}>
-                <div className={"tooltip"}> Game Mode</div>
-                <IconDeviceGamepad stroke={2} style={{ color: "var(--color-7)"}} />
-            </div>
-
-            <div className={"config-item"}>
-                <div className={"tooltip"}> Leaderboard </div>
-                <IconCrown stroke={2} style={{ color: "var(--color-7)"}} />
-            </div>
-
-            <div className={"config-item"}>
-                <div className={"tooltip"}> Login </div>
-                <IconUser stroke={2} style={{ color: "var(--color-7)"}} />
             </div>
         </div>
     );
