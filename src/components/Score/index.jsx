@@ -3,31 +3,22 @@ import {IconReload} from "@tabler/icons";
 import {useContext} from "react";
 import Indicator from "components/Shared/Indicator";
 import {Context} from "context/StateProvider";
+import {calculateAccuracy, calculateWCPM, calculateWPM, calculateWrongs} from "utils";
 
 function Score() {
     const {state, dispatch} = useContext(Context);
     const duration = localStorage.getItem("time");
 
-    const [wpm, wcpm] = [
-        (state.score.correctWord + state.score.wrongWord) / (duration === "30" ? 0.5 : duration === "60" ? 1 : duration === "120" ? 2 : duration),
-        ((state.score.correctWord + state.score.wrongWord) - state.score.wrongWord) / (duration === "30" ? 0.5 : duration === "60" ? 1 : duration === "120" ? 2 : duration)
-    ]
-
-    const [accuracy, wrong] = [
-        ((wcpm / wpm) * 100),
-        100 - ((wcpm / wpm) * 100)
-    ]
-
     const indicators = [
-        { name: "wpm", result: wpm },
-        { name: "wcpm", result: wcpm },
-        { name: "accuracy", result: accuracy || 0 },
-        { name: "wrong", result: wrong || 0 },
+        { name: "wpm", result: calculateWPM(state.score.correctWord, state.score.wrongWord, duration) },
+        { name: "wcpm", result: calculateWCPM(state.score.correctWord, state.score.wrongWord, duration) },
+        { name: "accuracy", result: calculateAccuracy(state.score.correctWord, state.score.wrongWord, duration) || 0 },
+        { name: "wrong", result: calculateWrongs(state.score.correctWord, state.score.wrongWord, duration) || 0 },
     ];
 
     const handleClick = () => {
         dispatch({ type: 'showScoreArea', value: false });
-        dispatch({ type: 'score', value: { correctWord: 0, wrongWord: 0 }})
+        dispatch({ type: 'score', value: { correctWord: 0, wrongWord: 0 }});
     }
 
     return (
