@@ -1,5 +1,5 @@
 # Typing Battle
-![image](https://user-images.githubusercontent.com/59766658/215741022-109560c8-1ca0-42e3-82df-e0834aa37d5a.png)
+![image](https://user-images.githubusercontent.com/59766658/215742582-da9edaa7-fda0-42bb-a4c3-2bf5f3bdcc34.png)
 
 ### App Setup
 ```bash
