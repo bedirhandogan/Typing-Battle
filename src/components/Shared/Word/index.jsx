@@ -23,7 +23,7 @@ function Word({value, isDisable}) {
         const targetLength = event.target.value.length;
 
         if (letters.length >= targetLength) {
-            setLetters(letters.map(value => {
+            setLetters(prevState => prevState.map(value => {
                 if (event.nativeEvent.inputType !== "deleteContentBackward" && value.index === (targetLength - 1)) {
                     return {...value, check: (index !== -1 ? "true" : "false")};
                 } else if (value.index === targetLength) {
