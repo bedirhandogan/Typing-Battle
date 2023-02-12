@@ -26,9 +26,9 @@ function Word({value, isDisable}) {
             setLetters(prevState => prevState.map(value => {
                 if (event.nativeEvent.inputType !== "deleteContentBackward" && value.index === (targetLength - 1)) {
                     return {...value, check: (index !== -1 ? "true" : "false")};
-                } else if (value.index === targetLength) {
-                    return { ...value, check: "empty" };
                 }
+
+                if (value.index === targetLength) return { ...value, check: "empty" };
 
                 return value;
             }));
