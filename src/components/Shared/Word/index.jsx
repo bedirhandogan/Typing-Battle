@@ -33,7 +33,7 @@ function Word({value, isDisable}) {
                 return value;
             }));
         } else { // next input
-            const letters = [...wordLettersRef.current.children];
+            const letters = [...wordLettersRef.current?.children];
             const lettersIds = [];
             const form = event.target.form;
             const formIndex = [...form].indexOf(event.target);
@@ -50,9 +50,10 @@ function Word({value, isDisable}) {
                 await dispatch({ type: "words", value: wordList });
                 form[formIndex + 1].focus();
 
-                dispatch(lettersCheck.length === (targetLength - 1) ?
-                    { type: 'score', value: {...state.score, correctWord: state.score.correctWord + 1}} :
-                    { type: 'score', value: {...state.score, wrongWord: state.score.wrongWord + 1}});
+                dispatch({ type: 'score', value: {
+                    correctLetter: state.score.correctLetter + lettersCheck.length,
+                    wrongLetter: state.score.wrongLetter + (letters.length - lettersCheck.length) }
+                });
             }
 
             event.target.value = event.target.value.slice(0, letters.length);

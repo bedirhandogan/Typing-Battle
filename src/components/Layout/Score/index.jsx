@@ -10,15 +10,15 @@ function Score() {
     const duration = localStorage.getItem("time");
 
     const indicators = [
-        { name: "wpm", result: calculateWPM(state.score.correctWord, state.score.wrongWord, duration) },
-        { name: "wcpm", result: calculateWCPM(state.score.correctWord, state.score.wrongWord, duration) },
-        { name: "accuracy", result: calculateAccuracy(state.score.correctWord, state.score.wrongWord, duration) || 0 },
-        { name: "wrong", result: calculateWrongs(state.score.correctWord, state.score.wrongWord, duration) || 0 },
+        { name: "wpm", result: calculateWPM(state.score.correctLetter, state.score.wrongLetter, duration) },
+        { name: "wcpm", result: calculateWCPM(state.score.correctLetter, state.score.wrongLetter, duration) },
+        { name: "accuracy", result: calculateAccuracy(state.score.correctLetter, state.score.wrongLetter, duration) || 0 },
+        { name: "wrong", result: calculateWrongs(state.score.correctLetter, state.score.wrongLetter, duration) || 0 },
     ];
 
     const handleClick = () => {
         dispatch({ type: 'showScoreArea', value: false });
-        dispatch({ type: 'score', value: { correctWord: 0, wrongWord: 0 }});
+        dispatch({ type: 'score', value: { correctLetter: 0, wrongLetter: 0 }});
     }
 
     return (

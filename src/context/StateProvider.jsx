@@ -21,8 +21,8 @@ function StateProvider({children}) {
             started: false
         },
         score: {
-            correctWord: 0,
-            wrongWord: 0,
+            correctLetter: 0,
+            wrongLetter: 0,
         },
         words: [...wordList()],
         inputFocus: true,
